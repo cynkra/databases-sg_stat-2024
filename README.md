@@ -1,8 +1,6 @@
 Databases with R
 ================
 
-### posit::conf(2024)
-
 by Kirill Müller
 
 -----
