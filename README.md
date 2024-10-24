@@ -7,10 +7,8 @@ by Kirill Müller
 
 -----
 
-:spiral_calendar: August 12, 2024  
+:spiral_calendar: October 24, 2024
 :alarm_clock:     09:00 - 17:00  
-:hotel:           402 Chiliwack
-:writing_hand:    [pos.it/conf](http://pos.it/conf)
 
 -----
 
@@ -74,18 +72,10 @@ install.packages(c(
   "DiagrammeRsvg",
   "arrow",
   "odbc",
+  "adbi",
   "parquetize"
 ))
 ```
-
-#### Discord
-
-Discord will be our communication tool for the workshop.
-
-- Register for a Discord account [here](https://discord.com/register)
-- Make sure your name match the one you used to register for the conference
-- Add the the workshop you are enrolled in your "About Me"
-- You'll receive an invite to join the Discord server closer to the conference and you'll be added to the workshop channel
 
 #### Database setup
 
@@ -129,7 +119,7 @@ We will provide a backup for you in case you don't have any.
 
 ## Instructor
 
-[Kirill Müller](https://www.cynkra.com/about/) has been working on the boundary between data and computer science for more than 25 years. He has been awarded five R consortium projects to improve database connectivity and performance in R. Kirill is a core contributor to several tidyverse packages, including dplyr and tibble, and is currently working on duckplyr, the next iteration of dplyr that uses DuckDB as a backend. He holds a Ph.D. in Civil Engineering from ETH Zurich and is a founder and partner at cynkra.
+[Kirill Müller](https://www.cynkra.com/about/) has been working on the boundary between data and computer science for more than 25 years. He has been awarded several R consortium projects to improve database connectivity and performance in R; the DBI project is currently a top-level project with the R Consortium. Kirill is author and core contributor to several tidyverse packages, including duckplyr, tibble, and dplyr. He holds a Ph.D. in Civil Engineering from ETH Zurich and is a founder and partner at cynkra.
 
 -----
 
