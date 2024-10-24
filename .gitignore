@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+*.duckdb
+*.parquet
+*.badjson
+*.ndjson
