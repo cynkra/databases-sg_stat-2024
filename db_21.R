@@ -41,8 +41,8 @@ tbl |>
   count(year, month, day)
 
 tbl |>
-  filter(month == 1L) |>
   count(year, month, day) |>
+  filter(month == 1) |>
   explain()
 
 # The future: Register as duckplyr lazy data frame ----

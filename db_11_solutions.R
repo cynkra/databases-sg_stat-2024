@@ -24,8 +24,7 @@ dbListFields(con, "academy")
 
 # 2. Read the `academy` table.
 
-df <- dbReadTable(con, "box_office")
-View(df)
+dbReadTable(con, "academy")
 
 # 3. Read all records from the `academy` table that correspond to awards won
 #     - Hint: Use the query "SELECT * FROM academy WHERE status = 'Won'"
@@ -43,11 +42,6 @@ sql <- paste0(
   dbQuoteLiteral(con, "Animated Feature")
 )
 
-dbGetQuery(con,
-  sql,
-  params = list(
-    c("Won")
-  )
-)
+dbGetQuery(con, sql, params = list(c("Won")))
 
 # dbDisconnect(con)

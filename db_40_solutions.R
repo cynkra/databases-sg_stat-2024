@@ -249,8 +249,67 @@ dbExecute(duckdb_con, q_recipients)
 
 stopifnot(length(dbListTables(duckdb_con)) == 4L)
 
-formd_dm <-
+formd_dm_ts <-
   dm::dm_from_con(duckdb_con) |>
   dm_formd_set_pk_fk()
+
+# resolve FILING_DATE format
+formd_dm_ts <-
+  formd_dm_ts |>
+  dm_zoom_to(form_d) |>
+  mutate(
+    DATE_LONG = if_else(
+      str_length(FILING_DATE) > 11L,
+      FILING_DATE,
+      NA_character_
+    ),
+    DATE_LONG = str_sub(DATE_LONG, 1L, 10L),
+    DATE_LONG = sql("CAST(DATE_LONG AS DATE)")
+  ) |>
+  mutate(
+    DATE_SHORT = if_else(
+      str_length(FILING_DATE) <= 11L,
+      FILING_DATE,
+      NA_character_
+    )
+  ) |>
+  mutate(
+    DATE_SHORT = sql("STRPTIME(DATE_SHORT, '%d-%b-%Y')")
+  ) |>
+  mutate(DATE_SHORT = sql("CAST(DATE_SHORT AS DATE)")) |>
+  mutate(FILING_DATE = coalesce(DATE_LONG, DATE_SHORT)) |>
+  select(-starts_with("DATE")) |>
+  dm_update_zoomed()
+
+formd_dm_ts |>
+  pull_tbl(form_d) |>
+  select(FILING_DATE) |>
+  pull() |>
+  class()
+
+states <- toupper(c("California", "Texas", "New York"))
+
+n_sub_ts <-
+  formd_dm_ts |>
+  dm_flatten_to_tbl(.start = issuers) |>
+  rename_with(tolower) |>
+  filter(stateorcountrydescription %in% states) |>
+  transmute(
+    accessionnumber,
+    filing_date,
+    stateorcountrydescription,
+    year = lubridate::year(filing_date),
+    month = lubridate::month(filing_date)
+  ) |>
+  count(year, month, stateorcountrydescription) |>
+  collect() |>
+  mutate(dte = lubridate::make_date(year, month))
+
+# number of submission per state
+n_sub_ts |>
+  ggplot(aes(dte, n, color = stateorcountrydescription)) +
+  geom_line() +
+  theme_minimal() +
+  labs(title = "Form D submission per state across years")
 
 dbDisconnect(duckdb_con)

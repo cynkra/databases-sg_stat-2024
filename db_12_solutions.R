@@ -63,6 +63,9 @@ filter(pixar_films, release_date >= as.Date("2020-01-01"))
 # 5. Have a missing name (`film` column) or `run_time`
 
 pixar_films |> 
+  filter(is.na(film) | is.na(run_time))
+
+pixar_films |> 
   filter(is.na(film) | is.na(run_time)) |> 
   show_query()
 

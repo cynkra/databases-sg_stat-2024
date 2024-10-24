@@ -77,7 +77,7 @@ dm_conf_target |>
   dm_draw()
 
 # 5. Deploy the data model to a DuckDB database
-con_rw <- dbConnect(duckdb::duckdb(), "posit-conf.duckdb")
+con_rw <- dbConnect(duckdb::duckdb(), "final.duckdb")
 dm_conf_target <- copy_dm_to(con_rw, dm_conf_target, temporary = FALSE)
 
 dbListTables(con_rw)

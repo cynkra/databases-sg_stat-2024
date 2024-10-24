@@ -20,26 +20,6 @@ df_pixar_films <-
   collect()
 df_pixar_films
 
-pixar_films |>
-  collect(n = 10)
-
-pixar_films |>
-  head() |> 
-  collect()
-
-dbExecute(con, "SELECT setseed(.42)")
-
-pixar_films |>
-  slice_sample(n = 10)
-
-pixar_films |>
-  head() |> 
-  show_query()
-
-pixar_films |>
-  slice_sample(n = 10) |> 
-  show_query()
-
 # Projection (column selection)  -----------------------------------------------
 
 pixar_films |>
@@ -77,14 +57,6 @@ df_pixar_films_202x <-
   filter(release_date >= "2020-01-01") |>
   collect()
 df_pixar_films_202x
-
-pixar_films |>
-  filter(grepl("^Toy ", film)) |> 
-  show_query()
-
-pixar_films |>
-  collect() |> 
-  filter(grepl("^Toy ", film))
 
 # Immutable data: original data unchanged
 pixar_films |>

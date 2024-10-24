@@ -82,9 +82,13 @@ per_year_won_nominated <-
   transmute(film, year = year(release_date)) |>
   inner_join(academy_won_nominated, join_by(film)) |>
   count(year, status)
+
+# collect() is optional!
+
 per_year_won_nominated
 
-ggplot(per_year_won_nominated, aes(x = year, y = n, fill = status)) +
+per_year_won_nominated |>
+  ggplot(aes(x = year, y = n, fill = status)) +
   geom_col()
 
 # dbDisconnect(con)
