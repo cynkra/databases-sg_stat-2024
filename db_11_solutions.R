@@ -20,7 +20,7 @@ dm::copy_dm_to(
 
 # 1. List all columns from the `box_office` table.
 
-dbListFields(con, "academy")
+dbListFields(con, "box_office")
 
 # 2. Read the `academy` table.
 
@@ -32,9 +32,6 @@ dbReadTable(con, "academy")
 dbGetQuery(con, "SELECT * FROM academy WHERE status = 'Won'")
 
 # 4. Use quoting and/or query parameters to stabilize the previous query.
-
-dbGetQuery(con, "SELECT DISTINCT award_type FROM academy")
-
 
 sql <- paste0(
   "SELECT * FROM ", dbQuoteIdentifier(con, "academy"), " ",

@@ -21,6 +21,7 @@ pixar_films
 
 count(pixar_films)
 
+# Does this work?
 nrow(pixar_films)
 
 # 2. How many films released after 2005 are stored in the table?
