@@ -90,7 +90,7 @@ fs::dir_tree("flights-part")
 
 # Read partitioned data ------------------------------------------------------------------
 
-tbl_part <- duckdb::tbl_query(
+tbl_part <- duckdb::tbl_function(
   con_memory,
   "read_parquet('flights-part/*/*/*.parquet', hive_partitioning = true)"
 )
@@ -149,7 +149,7 @@ duckplyr_df_count |>
 
 # Exercises -------------------------------------------------------------------------
 
-# 1. From the Parquet file, compute a lazy dbplyr tables
+# 1. From the Parquet file, compute a lazy dbplyr table
 #    showing the mean and median departure delay
 #    for each month.
 # 2. Compute the same data as duckplyr lazy data frames.

@@ -4,7 +4,7 @@ requireNamespace("duckplyr")
 
 arrow::write_parquet(nycflights13::flights, "flights.parquet")
 
-# 1. From the Parquet file, compute a lazy dbplyr tables
+# 1. From the Parquet file, compute a lazy dbplyr table
 #    showing the mean and median departure delay
 #    for each month.
 
